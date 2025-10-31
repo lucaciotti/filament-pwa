@@ -1,5 +1,5 @@
 {
-    "name": "tomatophp/filament-pwa",
+    "name": "lucaciotti/filament-pwa",
     "type": "library",
     "description": "get a PWA feature on your FilamentPHP app with settings from panel",
     "keywords": [
