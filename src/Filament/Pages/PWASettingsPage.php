@@ -2,10 +2,12 @@
 
 namespace TomatoPHP\FilamentPWA\Filament\Pages;
 
+use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\Section;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions\Action;
+// use Filament\Pages\Actions\Action;
 use Filament\Pages\SettingsPage;
 use Filament\Forms\Components\Grid;
 use Filament\Support\Exceptions\Halt;
@@ -19,6 +21,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\Actions\ButtonAction;
 use Filament\Forms\Components\FileUpload;
+use Filament\Support\Icons\Heroicon;
 use TomatoPHP\FilamentPWA\Settings\PWASettings;
 use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
@@ -28,8 +31,9 @@ use function Filament\Support\is_app_url;
 class PWASettingsPage extends SettingsPage
 {
     use UseShield;
-    
-    protected static ?string $navigationIcon = 'heroicon-o-cog';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog;
+    // protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     protected static string $settings = PWASettings::class;
 
