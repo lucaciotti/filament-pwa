@@ -5,25 +5,17 @@ namespace TomatoPHP\FilamentPWA\Filament\Pages;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\ColorPicker;
-use Filament\Forms\Components\Section;
-use Filament\Notifications\Notification;
-// use Filament\Pages\Actions\Action;
-use Filament\Pages\SettingsPage;
-use Filament\Forms\Components\Grid;
-use Filament\Support\Exceptions\Halt;
-use Filament\Support\Facades\FilamentView;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\File;
-use Spatie\Sitemap\SitemapGenerator;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Pages\Actions\ButtonAction;
-use Filament\Forms\Components\FileUpload;
+use Filament\Pages\SettingsPage;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Illuminate\Support\Facades\File;
+use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use TomatoPHP\FilamentPWA\Settings\PWASettings;
-use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
 use function Filament\Support\is_app_url;
 
@@ -60,11 +52,10 @@ class PWASettingsPage extends SettingsPage
         ];
     }
 
-
-    protected function getFormSchema(): array
+    public function form(Schema $schema): Schema
     {
-        return [
-            Grid::make(['default' => 2])->schema([
+        return $schema->columns(1)->components([
+            Grid::make()->columns(1)->schema([
                 Section::make(trans('filament-pwa::messages.sections.general'))
                     ->collapsible()
                     ->schema([
@@ -231,7 +222,7 @@ class PWASettingsPage extends SettingsPage
                             ->hint(config('filament-settings-hub.show_hint') ? 'setting("pwa_shortcuts")' : null),
                     ])
             ])
-        ];
+        ]);
     }
 
     public function afterSave()
